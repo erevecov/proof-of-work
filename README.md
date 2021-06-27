@@ -15,7 +15,7 @@ node app
 
 ## Funcionamiento
 
-Al ejecutar el script, se irá escribiendo en consola un intento de búsqueda del substring ***b00da***. Cuando el programa se detenga, quiere decir que el último objeto contiene en la key "sha" el valor que contiene el substring ***b00da***.  
+Al ejecutar el script, se irá escribiendo en consola un intento de búsqueda del substring ***b00da***. Cuando el programa se detenga, el último objeto escrito contendrá en la key "sha" el valor con el substring ***b00da***.  
 
 ```
 .
