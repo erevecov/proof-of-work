@@ -15,7 +15,7 @@ node app
 
 ## Funcionamiento
 
-Al ejecutar el script, se solicitará un string que contenga los caracteres ***a-f 0-9***, una vez validados estos datos, iniciarán los intentos de búsqueda string. Cuando el script finalice su ejecución, se escribirá en terminal el ***string base (str), hash (sha256), contador de intentos (count), tiempo de ejecución (time).***
+Al ejecutar el script se solicitará un string que contenga los caracteres ***a-f 0-9***, una vez validados estos datos, iniciarán los intentos de búsqueda del string. Cuando el script finalice su ejecución, se escribirá en terminal el ***string base (str), hash (sha256), contador de intentos (count), tiempo de ejecución (time).***
 
 ```
 ✔ substring to find (min 1 character lowercase a-f and 0-9): … b00da
