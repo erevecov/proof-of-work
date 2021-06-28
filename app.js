@@ -12,6 +12,8 @@ async function main () {
     let it = 0
     let startTime = performance.now()
 
+    console.log(`Searching ${textToFind}...`)
+
     while (true) {
         let str = createRandomString()
         it += 1
@@ -45,8 +47,8 @@ async function promptHandler() {
     let res = await prompts({
         type: 'text',
         name: 'value',
-        message: 'substring to find (just a b c d e f and 0-9):',
-        validate: value => (!/^[a-f0-9]+$/.test(value) ? 'just a b c d e f and 0-9' : true)
+        message: 'substring to find (min 1 character lowercase a-f and 0-9):',
+        validate: value => (/^[a-f0-9]+$/.test(value) && value.length > 0) ? true : 'min 1 character lowercase (a-f and 0-9)'
     })
 
     return res.value.toLowerCase()
