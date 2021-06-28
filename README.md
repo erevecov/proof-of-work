@@ -1,5 +1,5 @@
 # Proof Of Work
-## _Prueba de trabajo para encontrar substring especifico en string resultante de sha256_
+## _Prueba de trabajo para encontrar substring específico en string resultante de sha256_
 
 ## Instalación
 
