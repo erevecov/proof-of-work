@@ -1,32 +1,66 @@
 const SHA256 = require('crypto-js/sha256')
-
-let findText = ''
-let textToFind = 'b00da'
-let it = 0
+const chalk = require('chalk')
+const prompts = require('prompts')
+const {
+    performance
+} = require('perf_hooks')
 
 main()
 
-function main () {
-    while (!findText.includes(textToFind)) {
-        let res = sha256Handler(createRandomString())
+async function main () {
+    let textToFind = await promptHandler()
+    let it = 0
+    let startTime = performance.now()
 
-        findText = res.sha
+    while (true) {
+        let str = createRandomString()
+        it += 1
 
-        console.log(res)
+        let obj = {
+            str,
+            sha: SHA256(str).toString(),
+            it
+        }
+
+        if (obj.sha.includes(textToFind)) {
+            obj.time = `${handleTime(startTime)} seconds`
+
+            handleResponse({obj, textToFind})
+
+            break
+        }
     }
 }
 
-function sha256Handler(str) {
-    it += 1
-
-    return {
-        str,
-        sha: SHA256(str).toString(),
-        it
-    }
+function handleResponse({obj, textToFind}) {
+console.log(`
+str: ${chalk.green(obj.str)}
+sha256: ${obj.sha.split(textToFind).join(chalk.bgGreen(textToFind))}
+count: ${obj.it}
+time: ${obj.time}
+`)
 }
 
-function createRandomString (stringLength = 5) {
+async function promptHandler() {
+    let res = await prompts({
+        type: 'text',
+        name: 'value',
+        message: 'substring to find (just a b c d e f and 0-9):',
+        validate: value => (!/^[a-f0-9]+$/.test(value) ? 'just a b c d e f and 0-9' : true)
+    })
+
+    return res.value.toLowerCase()
+}
+
+function handleTime(startTime) {
+    let endTime = performance.now()
+    let timeDiff = endTime - startTime
+    timeDiff /= 1000
+
+    return timeDiff.toFixed(3)
+}
+
+function createRandomString (stringLength = 10) {
     let randomString = ''
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
