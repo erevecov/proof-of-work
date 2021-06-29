@@ -28,7 +28,6 @@ async function main () {
             obj.time = `${handleTime(startTime)} seconds`
 
             handleResponse({obj, textToFind})
-
             break
         }
     }
@@ -37,6 +36,7 @@ async function main () {
 function handleResponse({obj, textToFind}) {
 console.log(`
 str: ${chalk.green(obj.str)}
+substring: ${textToFind}
 sha256: ${obj.sha.split(textToFind).join(chalk.bgGreen(textToFind))}
 count: ${obj.it}
 time: ${obj.time}
